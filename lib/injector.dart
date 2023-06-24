@@ -8,6 +8,7 @@ import 'package:mvvm_movie_app/presentation/home/now_playing/now_playing_cubit.d
 import 'package:mvvm_movie_app/presentation/home/popular/popular_cubit.dart';
 import 'package:mvvm_movie_app/presentation/home/top_rated/top_rated_cubit.dart';
 import 'package:mvvm_movie_app/presentation/home/up_coming/up_coming_cubit.dart';
+import 'package:mvvm_movie_app/presentation/movie_detail/movie_detail_cubit.dart';
 
 final locator = GetIt.instance;
 
@@ -33,4 +34,5 @@ void initDependencies() {
   locator.registerFactory(() => PopularMovieCubit(locator()));
   locator.registerFactory(() => TopRatedCubit(locator()));
   locator.registerFactory(() => UpComingCubit(locator()));
+  locator.registerFactory(() => MovieDetailCubit(locator()));
 }

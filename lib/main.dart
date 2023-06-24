@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_movie_app/core/app_route_path.dart';
 import 'package:mvvm_movie_app/core/environment_config.dart';
+import 'package:mvvm_movie_app/presentation/about/about_screen.dart';
 import 'package:mvvm_movie_app/presentation/home/home_screen.dart';
 import 'package:mvvm_movie_app/presentation/movie_detail/movie_detail_screen.dart';
 
@@ -38,6 +39,12 @@ class MyApp extends StatelessWidget {
                     params["id"].toString(),
                   ),
                 ),
+              );
+            }
+          case AppRoutePath.about:
+            {
+              return MaterialPageRoute(
+                builder: (_) => AboutScreen(),
               );
             }
           default:

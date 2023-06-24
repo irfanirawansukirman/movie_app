@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_movie_app/core/app_route_path.dart';
 import 'package:mvvm_movie_app/presentation/home/now_playing/now_playing_screen.dart';
 import 'package:mvvm_movie_app/presentation/home/popular/popular_screen.dart';
 import 'package:mvvm_movie_app/presentation/home/top_rated/top_rated_screen.dart';
@@ -32,6 +33,34 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Flutter Movie App"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text('Coming soon... Insyaallah!'),
+                  action: SnackBarAction(
+                    label: 'Close',
+                    onPressed: () {
+                      // Code to execute.
+                    },
+                  ),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.favorite,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutePath.about);
+            },
+            icon: Icon(
+              Icons.info,
+            ),
+          )
+        ],
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

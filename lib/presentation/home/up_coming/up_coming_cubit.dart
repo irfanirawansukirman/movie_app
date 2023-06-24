@@ -1,10 +1,9 @@
 import 'dart:developer';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:mvvm_movie_app/domain/entity/error_entity.dart';
-import 'package:mvvm_movie_app/domain/entity/top_rated_entity.dart';
-import 'package:mvvm_movie_app/domain/entity/up_coming_entity.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/error_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/up_coming_entity.dart';
 import 'package:mvvm_movie_app/domain/usecase/movie_usecase.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -21,11 +20,11 @@ class UpComingCubit extends Cubit<UpComingState> {
     final response = await movieUseCase.getUpComingMovies(1);
 
     response.fold(
-          (l) {
+      (l) {
         emit(UpComingFailed(l));
         refreshController.refreshCompleted();
       },
-          (r) {
+      (r) {
         emit(UpComingSuccess(r));
         refreshController.refreshCompleted();
       },
@@ -41,11 +40,11 @@ class UpComingCubit extends Cubit<UpComingState> {
     final response = await movieUseCase.getUpComingMovies(nextPage);
 
     response.fold(
-          (l) {
+      (l) {
         emit(UpComingFailed(l));
         refreshController.loadComplete();
       },
-          (r) {
+      (r) {
         List<UpComingEntity> currentData = currentState.data;
         List<UpComingEntity> result = [...currentData, ...r];
         emit(UpComingSuccess(result, page: nextPage));

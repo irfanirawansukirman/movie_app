@@ -13,7 +13,7 @@ class PopularSuccess extends PopularState {
 }
 
 class PopularFailed extends PopularState {
-  final ErrorEntity? errorEntity;
+  final ErrorEntity error;
 
-  PopularFailed(this.errorEntity);
+  PopularFailed(this.error);
 }

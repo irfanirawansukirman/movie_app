@@ -1,5 +1,5 @@
 import 'package:mvvm_movie_app/core/common.dart';
-import 'package:mvvm_movie_app/domain/entity/now_playing_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/now_playing_entity.dart';
 
 class NowPlayingModel {
   NowPlayingModel({

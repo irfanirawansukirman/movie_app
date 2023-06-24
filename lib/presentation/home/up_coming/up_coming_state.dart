@@ -13,7 +13,7 @@ class UpComingSuccess extends UpComingState {
 }
 
 class UpComingFailed extends UpComingState {
-  final ErrorEntity errorEntity;
+  final ErrorEntity error;
 
-  UpComingFailed(this.errorEntity);
+  UpComingFailed(this.error);
 }

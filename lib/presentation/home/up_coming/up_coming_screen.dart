@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_movie_app/core/widget/error_view_widget.dart';
-import 'package:mvvm_movie_app/core/widget/movie_item_widget.dart';
+import 'package:mvvm_movie_app/presentation/home/widget/movie_item_widget.dart';
 import 'package:mvvm_movie_app/core/widget/progress_view_widget.dart';
 import 'package:mvvm_movie_app/injector.dart' as inject;
 import 'package:mvvm_movie_app/presentation/home/up_coming/up_coming_cubit.dart';
@@ -44,7 +44,7 @@ class UpComingScreen extends StatelessWidget {
               ),
             );
           } else if (state is UpComingFailed) {
-            log("UP_COMING_MOVIE_FAILED ${state.errorEntity}");
+            log("UP_COMING_MOVIE_FAILED ${state.error}");
             return const ErrorViewWidget();
           } else {
             return const ProgressViewWidget();

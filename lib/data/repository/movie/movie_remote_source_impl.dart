@@ -4,10 +4,11 @@ import 'dart:developer';
 import 'package:mvvm_movie_app/core/environment_config.dart';
 import 'package:mvvm_movie_app/core/remote_exception.dart';
 import 'package:mvvm_movie_app/data/model/error_model.dart';
-import 'package:mvvm_movie_app/data/model/now_playing_model.dart';
-import 'package:mvvm_movie_app/data/model/popular_movie_model.dart';
-import 'package:mvvm_movie_app/data/model/top_rated_model.dart';
-import 'package:mvvm_movie_app/data/model/up_coming_model.dart';
+import 'package:mvvm_movie_app/data/model/movie/movie_detail_model.dart';
+import 'package:mvvm_movie_app/data/model/movie/now_playing_model.dart';
+import 'package:mvvm_movie_app/data/model/movie/popular_movie_model.dart';
+import 'package:mvvm_movie_app/data/model/movie/top_rated_model.dart';
+import 'package:mvvm_movie_app/data/model/movie/up_coming_model.dart';
 import 'package:mvvm_movie_app/data/source/remote/movie_remote_source.dart';
 import 'package:http/http.dart' as http;
 
@@ -79,6 +80,21 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
       log("getUpComingMovies() => RESPONSE $body");
 
       return UpComingModel.fromJson(body);
+    } else {
+      throw RemoteException(ErrorModel.fromJson(body));
+    }
+  }
+
+  @override
+  Future<MovieDetailModel> getMovieDetail(int id) async {
+    final response = await client.get(
+      Uri.parse("${apiBaseUrl}movie/$id?language=en-US"),
+      headers: {"Authorization": apiBearerToken},
+    );
+
+    final body = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      return MovieDetailModel.fromJson(body);
     } else {
       throw RemoteException(ErrorModel.fromJson(body));
     }

@@ -1,8 +1,8 @@
 import 'package:mvvm_movie_app/core/common.dart';
-import 'package:mvvm_movie_app/domain/entity/top_rated_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/popular_entity.dart';
 
-class TopRatedModel {
-  TopRatedModel({
+class PopularModel {
+  PopularModel({
     required this.page,
     required this.results,
     required this.totalPages,
@@ -10,14 +10,14 @@ class TopRatedModel {
   });
 
   late final int page;
-  late final List<TopRatedItemModel> results;
+  late final List<PopularItemModel> results;
   late final int totalPages;
   late final int totalResults;
 
-  TopRatedModel.fromJson(Map<String, dynamic> json) {
+  PopularModel.fromJson(Map<String, dynamic> json) {
     page = json['page'];
     results = List.from(json['results'])
-        .map((e) => TopRatedItemModel.fromJson(e))
+        .map((e) => PopularItemModel.fromJson(e))
         .toList();
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
@@ -33,8 +33,8 @@ class TopRatedModel {
   }
 }
 
-class TopRatedItemModel {
-  TopRatedItemModel({
+class PopularItemModel {
+  PopularItemModel({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -66,7 +66,7 @@ class TopRatedItemModel {
   late final dynamic voteAverage;
   late final int voteCount;
 
-  TopRatedItemModel.fromJson(Map<String, dynamic> json) {
+  PopularItemModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = tryCast<String>(json['backdrop_path']) ?? "";
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
@@ -83,7 +83,7 @@ class TopRatedItemModel {
     voteCount = json['vote_count'];
   }
 
-  TopRatedEntity toEntity() => TopRatedEntity(
+  PopularEntity toEntity() => PopularEntity(
         id: id,
         popularity: tryCast<double>(popularity) ?? 0.0,
         posterPath: posterPath,

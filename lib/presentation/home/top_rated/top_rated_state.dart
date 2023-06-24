@@ -13,7 +13,7 @@ class TopRatedSuccess extends TopRatedState {
 }
 
 class TopRatedFailed extends TopRatedState {
-  final ErrorEntity errorEntity;
+  final ErrorEntity error;
 
-  TopRatedFailed(this.errorEntity);
+  TopRatedFailed(this.error);
 }

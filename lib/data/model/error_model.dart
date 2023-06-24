@@ -1,4 +1,4 @@
-import 'package:mvvm_movie_app/domain/entity/error_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/error_entity.dart';
 
 class ErrorModel {
   ErrorModel({

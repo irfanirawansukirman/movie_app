@@ -1,23 +1,26 @@
 import 'package:mvvm_movie_app/core/common.dart';
-import 'package:mvvm_movie_app/domain/entity/popular_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/up_coming_entity.dart';
 
-class PopularModel {
-  PopularModel({
+class UpComingModel {
+  UpComingModel({
+    required this.dates,
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
+  late final UpComingDatesModel dates;
   late final int page;
-  late final List<PopularItemModel> results;
+  late final List<UpComingItemModel> results;
   late final int totalPages;
   late final int totalResults;
 
-  PopularModel.fromJson(Map<String, dynamic> json) {
+  UpComingModel.fromJson(Map<String, dynamic> json) {
+    dates = UpComingDatesModel.fromJson(json['dates']);
     page = json['page'];
     results = List.from(json['results'])
-        .map((e) => PopularItemModel.fromJson(e))
+        .map((e) => UpComingItemModel.fromJson(e))
         .toList();
     totalPages = json['total_pages'];
     totalResults = json['total_results'];
@@ -25,6 +28,7 @@ class PopularModel {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
+    _data['dates'] = dates.toJson();
     _data['page'] = page;
     _data['results'] = results.map((e) => e.toJson()).toList();
     _data['total_pages'] = totalPages;
@@ -33,8 +37,30 @@ class PopularModel {
   }
 }
 
-class PopularItemModel {
-  PopularItemModel({
+class UpComingDatesModel {
+  UpComingDatesModel({
+    required this.maximum,
+    required this.minimum,
+  });
+
+  late final String maximum;
+  late final String minimum;
+
+  UpComingDatesModel.fromJson(Map<String, dynamic> json) {
+    maximum = json['maximum'];
+    minimum = json['minimum'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['maximum'] = maximum;
+    _data['minimum'] = minimum;
+    return _data;
+  }
+}
+
+class UpComingItemModel {
+  UpComingItemModel({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -58,7 +84,7 @@ class PopularItemModel {
   late final String originalLanguage;
   late final String originalTitle;
   late final String overview;
-  late final dynamic popularity;
+  late final double popularity;
   late final String posterPath;
   late final String releaseDate;
   late final String title;
@@ -66,7 +92,7 @@ class PopularItemModel {
   late final dynamic voteAverage;
   late final int voteCount;
 
-  PopularItemModel.fromJson(Map<String, dynamic> json) {
+  UpComingItemModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = tryCast<String>(json['backdrop_path']) ?? "";
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
@@ -75,7 +101,7 @@ class PopularItemModel {
     originalTitle = json['original_title'];
     overview = json['overview'];
     popularity = json['popularity'];
-    posterPath = json['poster_path'];
+    posterPath = tryCast<String>(json['poster_path']) ?? "";
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];
@@ -83,9 +109,9 @@ class PopularItemModel {
     voteCount = json['vote_count'];
   }
 
-  PopularEntity toEntity() => PopularEntity(
+  UpComingEntity toEntity() => UpComingEntity(
         id: id,
-        popularity: tryCast<double>(popularity) ?? 0.0,
+        popularity: popularity,
         posterPath: posterPath,
         releaseDate: releaseDate,
         title: title,

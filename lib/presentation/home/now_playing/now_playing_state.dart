@@ -13,7 +13,7 @@ class NowPlayingSuccess extends NowPlayingState {
 }
 
 class NowPlayingFailed extends NowPlayingState {
-  final ErrorEntity? errorEntity;
+  final ErrorEntity error;
 
-  NowPlayingFailed(this.errorEntity);
+  NowPlayingFailed(this.error);
 }

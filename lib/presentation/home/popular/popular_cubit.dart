@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mvvm_movie_app/domain/entity/error_entity.dart';
-import 'package:mvvm_movie_app/domain/entity/popular_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/error_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/popular_entity.dart';
 import 'package:mvvm_movie_app/domain/usecase/movie_usecase.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
