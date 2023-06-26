@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      // set app to always dark mode
+      // source: https://stackoverflow.com/a/67714404
+      theme: ThemeData.dark(),
       home: const HomeScreen(),
       initialRoute: AppRoutePath.home,
       onGenerateRoute: (route) {

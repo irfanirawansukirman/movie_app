@@ -6,10 +6,11 @@ abstract class PopularState {}
 class PopularInitial extends PopularState {}
 
 class PopularSuccess extends PopularState {
-  final List<PopularEntity> data;
+  final List<MovieEntity> data;
+  final List<GenreEntity> genres;
   final int page;
 
-  PopularSuccess(this.data, {this.page = 1});
+  PopularSuccess(this.data, this.genres, {this.page = 1});
 }
 
 class PopularFailed extends PopularState {

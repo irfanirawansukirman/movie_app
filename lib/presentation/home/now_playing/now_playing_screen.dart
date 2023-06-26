@@ -21,26 +21,33 @@ class NowPlayingScreen extends StatelessWidget {
           log("NOW_PLAYING_MOVIE_STATE $state");
           if (state is NowPlayingSuccess) {
             log("NOW_PLAYING_MOVIE_SUCCESS ${state.data}");
-            return Container(
-              color: Colors.white,
-              child: SmartRefresher(
-                onRefresh: () =>
-                    context.read<NowPlayingCubit>()..getNowPlayingMovies(),
-                onLoading: () =>
-                    context.read<NowPlayingCubit>()..getNextNowPlayingMovies(),
-                enablePullDown: true,
-                enablePullUp: true,
-                controller: NowPlayingCubit.refreshController,
-                child: ListView.builder(
-                  itemCount: state.data.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return MovieItemWidget(
-                      title: state.data[index].title,
-                      position: index,
-                      id: state.data[index].id,
-                    );
-                  },
+            return SmartRefresher(
+              onRefresh: () =>
+                  context.read<NowPlayingCubit>()..getNowPlayingMovies(),
+              onLoading: () =>
+                  context.read<NowPlayingCubit>()..getNextNowPlayingMovies(),
+              enablePullDown: true,
+              enablePullUp: true,
+              controller: NowPlayingCubit.refreshController,
+              child: GridView.builder(
+                padding: EdgeInsets.all(8.0),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 2 / 3,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 8.0,
+                    crossAxisSpacing: 8.0
                 ),
+                itemCount: state.data.length,
+                itemBuilder: (BuildContext ctx, index) {
+                  return MovieItemWidget(
+                    title: state.data[index].title,
+                    position: index,
+                    id: state.data[index].id,
+                    posterPath: state.data[index].posterPath,
+                    genreIds: state.data[index].genreIds,
+                    genreEntities: [],
+                  );
+                },
               ),
             );
           } else if (state is NowPlayingFailed) {

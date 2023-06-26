@@ -6,10 +6,11 @@ abstract class NowPlayingState {}
 class NowPlayingInitial extends NowPlayingState {}
 
 class NowPlayingSuccess extends NowPlayingState {
-  final List<NowPlayingEntity> data;
+  final List<MovieEntity> data;
+  final List<String> genres;
   final int page;
 
-  NowPlayingSuccess(this.data, {this.page = 1});
+  NowPlayingSuccess(this.genres, this.data, {this.page = 1});
 }
 
 class NowPlayingFailed extends NowPlayingState {

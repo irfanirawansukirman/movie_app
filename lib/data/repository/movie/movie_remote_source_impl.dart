@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:mvvm_movie_app/core/environment_config.dart';
 import 'package:mvvm_movie_app/core/remote_exception.dart';
 import 'package:mvvm_movie_app/data/model/error_model.dart';
+import 'package:mvvm_movie_app/data/model/genre/genre_model.dart';
 import 'package:mvvm_movie_app/data/model/movie/movie_detail_model.dart';
 import 'package:mvvm_movie_app/data/model/movie/now_playing_model.dart';
 import 'package:mvvm_movie_app/data/model/movie/popular_movie_model.dart';
@@ -16,6 +17,23 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
   final http.Client client;
 
   MovieRemoteSourceImpl(this.client);
+
+  @override
+  Future<GenreModel> getGenres() async {
+    final response = await client.get(
+      Uri.parse("${apiBaseUrl}genre/movie/list?language=en"),
+      headers: {"Authorization": apiBearerToken},
+    );
+
+    final body = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      log("getGenres() => RESPONSE $body");
+
+      return GenreModel.fromJson(body);
+    } else {
+      throw RemoteException(ErrorModel.fromJson(body));
+    }
+  }
 
   @override
   Future<NowPlayingModel> getNowPlayingMovies(int page) async {

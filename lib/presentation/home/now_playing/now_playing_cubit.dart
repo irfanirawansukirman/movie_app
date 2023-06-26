@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm_movie_app/domain/entity/movie/error_entity.dart';
-import 'package:mvvm_movie_app/domain/entity/movie/now_playing_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/genre_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/movie_entity.dart';
 import 'package:mvvm_movie_app/domain/usecase/movie_usecase.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -16,7 +17,24 @@ class NowPlayingCubit extends Cubit<NowPlayingState> {
 
   static final refreshController = RefreshController();
 
+  List<GenreEntity> _genresTmp = [];
+
+  _getGenres() async {
+    final response = await movieUseCase.getGenres();
+
+    response.fold(
+      (l) {},
+      (r) {
+        log("getGenres() => RESPONSE $r");
+
+        _genresTmp = r;
+      },
+    );
+  }
+
   getNowPlayingMovies() async {
+    _getGenres();
+
     final response = await movieUseCase.getNowPlayingMovies(1);
 
     response.fold(
@@ -25,7 +43,18 @@ class NowPlayingCubit extends Cubit<NowPlayingState> {
         refreshController.refreshCompleted();
       },
       (r) {
-        emit(NowPlayingSuccess(r));
+        List<String> uiGenres = [];
+        for (var movie in r) {
+          for (int i = 0; i < movie.genreIds.length; i++) {
+            int genreId = movie.genreIds[i];
+            uiGenres = _genresTmp
+                .where((element) => element.id == genreId)
+                .map((e) => e.name)
+                .toList();
+          }
+        }
+
+        emit(NowPlayingSuccess(uiGenres, r));
         refreshController.refreshCompleted();
       },
     );
@@ -45,9 +74,20 @@ class NowPlayingCubit extends Cubit<NowPlayingState> {
         refreshController.loadComplete();
       },
       (r) {
-        List<NowPlayingEntity> currentData = currentState.data;
-        List<NowPlayingEntity> result = [...currentData, ...r];
-        emit(NowPlayingSuccess(result, page: nextPage));
+        List<String> uiGenres = [];
+        for (var movie in r) {
+          for (int i = 0; i < movie.genreIds.length; i++) {
+            int genreId = movie.genreIds[i];
+            uiGenres = _genresTmp
+                .where((element) => element.id == genreId)
+                .map((e) => e.name)
+                .toList();
+          }
+        }
+
+        List<MovieEntity> currentData = currentState.data;
+        List<MovieEntity> result = [...currentData, ...r];
+        emit(NowPlayingSuccess(uiGenres, result, page: nextPage));
         refreshController.loadComplete();
       },
     );

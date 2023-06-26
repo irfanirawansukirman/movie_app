@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_movie_app/domain/entity/movie/error_entity.dart';
-import 'package:mvvm_movie_app/domain/entity/movie/popular_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/genre_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/movie_entity.dart';
 import 'package:mvvm_movie_app/domain/usecase/movie_usecase.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -16,7 +17,26 @@ class PopularMovieCubit extends Cubit<PopularState> {
 
   static final refreshController = RefreshController();
 
+  List<GenreEntity> _genresTmp = [];
+
+  _getGenres() async {
+    final response = await movieUseCase.getGenres();
+
+    response.fold(
+      (l) {
+        log("getGenres() => ERROR $l");
+      },
+      (r) {
+        log("getGenres() => RESPONSE $r");
+
+        _genresTmp = r;
+      },
+    );
+  }
+
   getPopularMovies() async {
+    _getGenres();
+
     final response = await movieUseCase.getPopularMovies(1);
 
     response.fold(
@@ -25,7 +45,7 @@ class PopularMovieCubit extends Cubit<PopularState> {
         refreshController.refreshCompleted();
       },
       (r) {
-        emit(PopularSuccess(r));
+        emit(PopularSuccess(r, _genresTmp));
         refreshController.refreshCompleted();
       },
     );
@@ -45,9 +65,9 @@ class PopularMovieCubit extends Cubit<PopularState> {
         refreshController.loadComplete();
       },
       (r) {
-        List<PopularEntity> currentData = currentState.data;
-        List<PopularEntity> result = [...currentData, ...r];
-        emit(PopularSuccess(result, page: nextPage));
+        List<MovieEntity> currentData = currentState.data;
+        List<MovieEntity> result = [...currentData, ...r];
+        emit(PopularSuccess(result, _genresTmp, page: nextPage));
         refreshController.loadComplete();
       },
     );

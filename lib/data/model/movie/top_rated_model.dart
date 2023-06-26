@@ -1,5 +1,5 @@
 import 'package:mvvm_movie_app/core/common.dart';
-import 'package:mvvm_movie_app/domain/entity/movie/top_rated_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/movie_entity.dart';
 
 class TopRatedModel {
   TopRatedModel({
@@ -83,15 +83,13 @@ class TopRatedItemModel {
     voteCount = json['vote_count'];
   }
 
-  TopRatedEntity toEntity() => TopRatedEntity(
-        id: id,
-        popularity: tryCast<double>(popularity) ?? 0.0,
-        posterPath: posterPath,
-        releaseDate: releaseDate,
-        title: title,
-        voteAverage: tryCast<double>(voteAverage) ?? 0.0,
-        voteCount: voteCount,
-      );
+  MovieEntity toEntity() => MovieEntity(
+    id: id,
+    popularity: popularity,
+    posterPath: posterPath,
+    title: title,
+    genreIds: genreIds,
+  );
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};

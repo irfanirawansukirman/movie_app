@@ -1,5 +1,5 @@
 import 'package:mvvm_movie_app/core/common.dart';
-import 'package:mvvm_movie_app/domain/entity/movie/now_playing_entity.dart';
+import 'package:mvvm_movie_app/domain/entity/movie/movie_entity.dart';
 
 class NowPlayingModel {
   NowPlayingModel({
@@ -109,14 +109,12 @@ class NowPlayingItemModel {
     voteCount = json['vote_count'];
   }
 
-  NowPlayingEntity toEntity() => NowPlayingEntity(
+  MovieEntity toEntity() => MovieEntity(
         id: id,
         popularity: popularity,
         posterPath: posterPath,
-        releaseDate: releaseDate,
         title: title,
-        voteAverage: tryCast<double>(voteAverage) ?? 0.0,
-        voteCount: voteCount,
+        genreIds: genreIds,
       );
 
   Map<String, dynamic> toJson() {

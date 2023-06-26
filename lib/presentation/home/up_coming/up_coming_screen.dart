@@ -31,13 +31,23 @@ class UpComingScreen extends StatelessWidget {
                 enablePullDown: true,
                 enablePullUp: true,
                 controller: UpComingCubit.refreshController,
-                child: ListView.builder(
+                child: GridView.builder(
+                  padding: EdgeInsets.all(8.0),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 2 / 3,
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 8.0,
+                      crossAxisSpacing: 8.0
+                  ),
                   itemCount: state.data.length,
-                  itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: (BuildContext ctx, index) {
                     return MovieItemWidget(
                       title: state.data[index].title,
                       position: index,
                       id: state.data[index].id,
+                      posterPath: state.data[index].posterPath,
+                      genreIds: state.data[index].genreIds,
+                      genreEntities: [],
                     );
                   },
                 ),

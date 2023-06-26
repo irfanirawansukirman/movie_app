@@ -6,10 +6,11 @@ abstract class TopRatedState {}
 class TopRatedInitial extends TopRatedState {}
 
 class TopRatedSuccess extends TopRatedState {
-  final List<TopRatedEntity> data;
+  final List<MovieEntity> data;
+  final List<String> genres;
   final int page;
 
-  TopRatedSuccess(this.data, {this.page = 1});
+  TopRatedSuccess(this.genres, this.data, {this.page = 1});
 }
 
 class TopRatedFailed extends TopRatedState {
