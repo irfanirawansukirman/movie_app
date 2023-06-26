@@ -94,14 +94,14 @@ class UpComingItemModel {
 
   UpComingItemModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
-    backdropPath = tryCast<String>(json['backdrop_path']) ?? "";
+    backdropPath = tryCast(json['backdrop_path'], "");
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
     id = json['id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
     overview = json['overview'];
     popularity = json['popularity'];
-    posterPath = tryCast<String>(json['poster_path']) ?? "";
+    posterPath = tryCast(json['poster_path'], "");
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];
@@ -110,12 +110,12 @@ class UpComingItemModel {
   }
 
   MovieEntity toEntity() => MovieEntity(
-    id: id,
-    popularity: popularity,
-    posterPath: posterPath,
-    title: title,
-    genreIds: genreIds,
-  );
+        id: id,
+        popularity: popularity,
+        posterPath: posterPath,
+        title: title,
+        genreIds: genreIds,
+      );
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};

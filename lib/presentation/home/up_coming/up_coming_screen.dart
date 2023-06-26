@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_movie_app/core/widget/error_view_widget.dart';
+import 'package:mvvm_movie_app/presentation/home/core/movie_source_type.dart';
 import 'package:mvvm_movie_app/presentation/home/widget/movie_item_widget.dart';
 import 'package:mvvm_movie_app/core/widget/progress_view_widget.dart';
 import 'package:mvvm_movie_app/injector.dart' as inject;
@@ -32,13 +33,12 @@ class UpComingScreen extends StatelessWidget {
                 enablePullUp: true,
                 controller: UpComingCubit.refreshController,
                 child: GridView.builder(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 2 / 3,
                       crossAxisCount: 2,
                       mainAxisSpacing: 8.0,
-                      crossAxisSpacing: 8.0
-                  ),
+                      crossAxisSpacing: 8.0),
                   itemCount: state.data.length,
                   itemBuilder: (BuildContext ctx, index) {
                     return MovieItemWidget(
@@ -55,7 +55,12 @@ class UpComingScreen extends StatelessWidget {
             );
           } else if (state is UpComingFailed) {
             log("UP_COMING_MOVIE_FAILED ${state.error}");
-            return const ErrorViewWidget();
+            return ErrorViewWidget(
+              message: state.error.message,
+              onRetry: () {
+                context.read<UpComingCubit>().getUpComingMovies();
+              },
+            );
           } else {
             return const ProgressViewWidget();
           }

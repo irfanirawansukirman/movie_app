@@ -10,10 +10,10 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 part 'popular_state.dart';
 
-class PopularMovieCubit extends Cubit<PopularState> {
+class PopularCubit extends Cubit<PopularState> {
   final MovieUseCase movieUseCase;
 
-  PopularMovieCubit(this.movieUseCase) : super(PopularInitial());
+  PopularCubit(this.movieUseCase) : super(PopularInitial());
 
   static final refreshController = RefreshController();
 

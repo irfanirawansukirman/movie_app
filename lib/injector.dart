@@ -31,7 +31,7 @@ void initDependencies() {
 
   // presentation - cubit state
   locator.registerFactory(() => NowPlayingCubit(locator()));
-  locator.registerFactory(() => PopularMovieCubit(locator()));
+  locator.registerFactory(() => PopularCubit(locator()));
   locator.registerFactory(() => TopRatedCubit(locator()));
   locator.registerFactory(() => UpComingCubit(locator()));
   locator.registerFactory(() => MovieDetailCubit(locator()));

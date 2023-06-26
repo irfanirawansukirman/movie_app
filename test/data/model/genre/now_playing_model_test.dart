@@ -12,7 +12,7 @@ void main() {
   );
 
   group(
-    "GET_GENRES_IS_SUCCESS",
+    "GET_NOW_PLAYING_MOVIES_IS_SUCCESS",
     () {
       test(
         "the data should be as expected",
@@ -20,8 +20,8 @@ void main() {
           // arrange
 
           // act
-          final actual = dataProvider.processGenresToEntity();
-          final expected = dataProvider.getGenresEntity();
+          final actual = dataProvider.processNowPlayingMoviesToEntity();
+          final expected = dataProvider.getNowPlayingMoviesEntity();
 
           // assert
           expect(actual, expected);
@@ -29,13 +29,13 @@ void main() {
       );
 
       test(
-        "the genre value should be as expected json",
-        () {
+        "the now playing movie value should be as expected json",
+        () async {
           // arrange
 
           // act
-          final actual = dataProvider.getGenreItemModel().toJson();
-          final expected = dataProvider.getGenreItemModelAsMap();
+          final actual = dataProvider.getNowPlayingItemModel().toJson();
+          final expected = dataProvider.getNowPlayingItemModelAsMap();
 
           // assert
           expect(actual, expected);
@@ -44,7 +44,7 @@ void main() {
 
       test(
         "the data is empty",
-        () {
+            () {
           // arrange
 
           // act
@@ -59,11 +59,11 @@ void main() {
   );
 
   group(
-    "GET_GENRES_IS_FAILED",
-    () {
+    "GET_NOW_PLAYING_MOVIES_IS_FAILED",
+        () {
       test(
         "the data is null",
-        () {
+            () {
           // arrange
 
           // act

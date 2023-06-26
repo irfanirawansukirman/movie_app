@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_movie_app/core/widget/error_view_widget.dart';
 import 'package:mvvm_movie_app/core/widget/progress_view_widget.dart';
+import 'package:mvvm_movie_app/presentation/home/core/movie_source_type.dart';
 import 'package:mvvm_movie_app/presentation/movie_detail/movie_detail_cubit.dart';
 import 'package:mvvm_movie_app/injector.dart' as inject;
 
@@ -24,13 +25,16 @@ class MovieDetailScreen extends StatelessWidget {
         child: BlocBuilder<MovieDetailCubit, MovieDetailState>(
           builder: (context, state) {
             if (state is MovieDetailSuccess) {
-              return Container(
-                child: Text(state.data.title),
-              );
+              return Text(state.data.title);
             } else if (state is MovieDetailFailed) {
-              return ErrorViewWidget();
+              return ErrorViewWidget(
+                message: state.error.message,
+                onRetry: () {
+                  context.read<MovieDetailCubit>().getMovieDetail(id);
+                },
+              );
             } else {
-              return ProgressViewWidget();
+              return const ProgressViewWidget();
             }
           },
         ),

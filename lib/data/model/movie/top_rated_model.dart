@@ -68,7 +68,7 @@ class TopRatedItemModel {
 
   TopRatedItemModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
-    backdropPath = tryCast<String>(json['backdrop_path']) ?? "";
+    backdropPath = tryCast(json['backdrop_path'], "");
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
     id = json['id'];
     originalLanguage = json['original_language'];

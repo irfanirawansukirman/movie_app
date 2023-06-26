@@ -94,14 +94,14 @@ class NowPlayingItemModel {
 
   NowPlayingItemModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
-    backdropPath = tryCast<String>(json['backdrop_path']) ?? "";
+    backdropPath = tryCast<String, String>(json['backdrop_path'], "");
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
     id = json['id'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
     overview = json['overview'];
     popularity = json['popularity'];
-    posterPath = tryCast<String>(json['poster_path']) ?? "";
+    posterPath = tryCast<String, String>(json['poster_path'], "");
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];

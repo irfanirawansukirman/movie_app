@@ -32,16 +32,16 @@ dynamic get apiBearerToken {
 }
 
 Map<String, dynamic> devConstants = {
-  _baseUrl: "https://api.themoviedb.org/3/",
+  _baseUrl: tmdbBaseUrl,
   _bearerToken: "Bearer $tmdbToken",
 };
 
 Map<String, dynamic> stageConstants = {
-  _baseUrl: "https://api.themoviedb.org/3/",
+  _baseUrl: tmdbBaseUrl,
   _bearerToken: "Bearer $tmdbToken",
 };
 
 Map<String, dynamic> prodConstants = {
-  _baseUrl: "https://api.themoviedb.org/3/",
+  _baseUrl: tmdbBaseUrl,
   _bearerToken: "Bearer $tmdbToken",
 };

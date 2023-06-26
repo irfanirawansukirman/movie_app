@@ -146,7 +146,7 @@ class BelongsToCollection {
   BelongsToCollection.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    posterPath = tryCast<String>(json['poster_path']) ?? "";
+    posterPath = tryCast(json['poster_path'], "");
     backdropPath = json['backdrop_path'];
   }
 
