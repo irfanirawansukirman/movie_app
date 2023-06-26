@@ -1,5 +1,7 @@
 // source: https://stackoverflow.com/a/63468529
 
+import 'package:mvvm_movie_app/core/secret.dart';
+
 const _baseUrl = "baseUrl";
 const _bearerToken = "bearerToken";
 
@@ -31,18 +33,15 @@ dynamic get apiBearerToken {
 
 Map<String, dynamic> devConstants = {
   _baseUrl: "https://api.themoviedb.org/3/",
-  _bearerToken:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjI0MWZlN2FlNzI4NTlhZDczYmZkYzhlZGUxNDM2NSIsInN1YiI6IjU3MjQ0ZjRhYzNhMzY4NDAwNDAwMWNkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fofQtGWmWtToxph9Idl3N1NHlcWw0Vm6gvXvo7QXKhA",
+  _bearerToken: "Bearer $tmdbToken",
 };
 
 Map<String, dynamic> stageConstants = {
   _baseUrl: "https://api.themoviedb.org/3/",
-  _bearerToken:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjI0MWZlN2FlNzI4NTlhZDczYmZkYzhlZGUxNDM2NSIsInN1YiI6IjU3MjQ0ZjRhYzNhMzY4NDAwNDAwMWNkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fofQtGWmWtToxph9Idl3N1NHlcWw0Vm6gvXvo7QXKhA",
+  _bearerToken: "Bearer $tmdbToken",
 };
 
 Map<String, dynamic> prodConstants = {
   _baseUrl: "https://api.themoviedb.org/3/",
-  _bearerToken:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjI0MWZlN2FlNzI4NTlhZDczYmZkYzhlZGUxNDM2NSIsInN1YiI6IjU3MjQ0ZjRhYzNhMzY4NDAwNDAwMWNkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fofQtGWmWtToxph9Idl3N1NHlcWw0Vm6gvXvo7QXKhA",
+  _bearerToken: "Bearer $tmdbToken",
 };
