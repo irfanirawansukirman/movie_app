@@ -21,7 +21,7 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
   @override
   Future<GenreModel> getGenres() async {
     final response = await client.get(
-      Uri.parse("${apiBaseUrl}genre/movie/list?language=en"),
+      Uri.parse("${apiBaseURL}genre/movie/list?language=en"),
       headers: {"Authorization": apiBearerToken},
     );
 
@@ -38,7 +38,7 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
   @override
   Future<NowPlayingModel> getNowPlayingMovies(int page) async {
     final response = await client.get(
-      Uri.parse("${apiBaseUrl}movie/now_playing?language=en-US&page=$page"),
+      Uri.parse("${apiBaseURL}movie/now_playing?language=en-US&page=$page"),
       headers: {"Authorization": apiBearerToken},
     );
 
@@ -55,7 +55,7 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
   @override
   Future<PopularModel> getPopularMovies(int page) async {
     final response = await client.get(
-      Uri.parse("${apiBaseUrl}movie/popular?language=en-US&page=$page"),
+      Uri.parse("${apiBaseURL}movie/popular?language=en-US&page=$page"),
       headers: {"Authorization": apiBearerToken},
     );
 
@@ -72,7 +72,7 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
   @override
   Future<TopRatedModel> getTopRatedMovies(int page) async {
     final response = await client.get(
-      Uri.parse("${apiBaseUrl}movie/top_rated?language=en-US&page=$page"),
+      Uri.parse("${apiBaseURL}movie/top_rated?language=en-US&page=$page"),
       headers: {"Authorization": apiBearerToken},
     );
 
@@ -89,7 +89,7 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
   @override
   Future<UpComingModel> getUpComingMovies(int page) async {
     final response = await client.get(
-      Uri.parse("${apiBaseUrl}movie/upcoming?language=en-US&page=$page"),
+      Uri.parse("${apiBaseURL}movie/upcoming?language=en-US&page=$page"),
       headers: {"Authorization": apiBearerToken},
     );
 
@@ -106,7 +106,7 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
   @override
   Future<MovieDetailModel> getMovieDetail(int id) async {
     final response = await client.get(
-      Uri.parse("${apiBaseUrl}movie/$id?language=en-US"),
+      Uri.parse("${apiBaseURL}movie/$id?language=en-US"),
       headers: {"Authorization": apiBearerToken},
     );
 

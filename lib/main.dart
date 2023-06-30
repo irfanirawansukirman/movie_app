@@ -8,7 +8,7 @@ import 'package:mvvm_movie_app/presentation/movie_detail/movie_detail_screen.dar
 import 'injector.dart' as inject;
 
 void main() {
-  setEnvironment(Environment.dev);
+  setEnvironment(Environment.development);
   WidgetsFlutterBinding.ensureInitialized();
 
   inject.initDependencies();

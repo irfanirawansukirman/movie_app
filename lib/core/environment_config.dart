@@ -2,29 +2,29 @@
 
 import 'package:mvvm_movie_app/core/secret.dart';
 
-const _baseUrl = "baseUrl";
+const _baseURL = "baseURL";
 const _bearerToken = "bearerToken";
 
-enum Environment { dev, stage, prod }
+enum Environment { development, staging, production }
 
 Map<String, dynamic> _config = {};
 
 void setEnvironment(Environment env) {
   switch (env) {
-    case Environment.dev:
+    case Environment.development:
       _config = devConstants;
       break;
-    case Environment.stage:
+    case Environment.staging:
       _config = stageConstants;
       break;
-    case Environment.prod:
+    case Environment.production:
       _config = prodConstants;
       break;
   }
 }
 
-dynamic get apiBaseUrl {
-  return _config[_baseUrl];
+dynamic get apiBaseURL {
+  return _config[_baseURL];
 }
 
 dynamic get apiBearerToken {
@@ -32,16 +32,16 @@ dynamic get apiBearerToken {
 }
 
 Map<String, dynamic> devConstants = {
-  _baseUrl: tmdbBaseUrl,
+  _baseURL: tmdbBaseUrl,
   _bearerToken: "Bearer $tmdbToken",
 };
 
 Map<String, dynamic> stageConstants = {
-  _baseUrl: tmdbBaseUrl,
+  _baseURL: tmdbBaseUrl,
   _bearerToken: "Bearer $tmdbToken",
 };
 
 Map<String, dynamic> prodConstants = {
-  _baseUrl: tmdbBaseUrl,
+  _baseURL: tmdbBaseUrl,
   _bearerToken: "Bearer $tmdbToken",
 };

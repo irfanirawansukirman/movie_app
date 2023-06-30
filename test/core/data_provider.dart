@@ -1,11 +1,23 @@
 import 'dart:core';
 
+import 'package:mvvm_movie_app/core/environment_config.dart';
 import 'package:mvvm_movie_app/data/model/genre/genre_model.dart';
 import 'package:mvvm_movie_app/data/model/movie/now_playing_model.dart';
 import 'package:mvvm_movie_app/domain/entity/movie/genre_entity.dart';
 import 'package:mvvm_movie_app/domain/entity/movie/movie_entity.dart';
 
 class DataProvider {
+  static const valueDoubleTmp = 10.0;
+
+  static final devAPIBaseURL = apiBaseURL;
+  static final devBearerToken = apiBearerToken;
+
+  static final stagingAPIBaseURL = apiBaseURL;
+  static final stagingBearerToken = apiBearerToken;
+
+  static final productionAPIBaseURL = apiBaseURL;
+  static final productionBearerToken = apiBearerToken;
+
   List<dynamic> getEmptyListResponse() {
     return [];
   }
