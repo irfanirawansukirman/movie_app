@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:mvvm_movie_app/core/environment_config.dart';
+import 'package:mvvm_movie_app/data/model/error_model.dart';
 import 'package:mvvm_movie_app/data/model/genre/genre_model.dart';
 import 'package:mvvm_movie_app/data/model/movie/now_playing_model.dart';
 import 'package:mvvm_movie_app/domain/entity/movie/genre_entity.dart';
@@ -106,5 +107,15 @@ class DataProvider {
       'vote_count': 0
     };
   }
+
 // movie list scope
+
+  ErrorModel getErrorModel(bool isSuccess) {
+    return ErrorModel(
+      errors: isSuccess == true ? [''] : [],
+      success: isSuccess == true ? true : false,
+      statusCode: isSuccess == true ? 200 : 400,
+      statusMessage: isSuccess == true ? 'success' : 'failed',
+    );
+  }
 }

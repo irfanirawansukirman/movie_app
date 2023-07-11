@@ -20,7 +20,7 @@ class ErrorModel {
   ErrorModel.fromJson(Map<String, dynamic> json) {
     errors = List.castFrom<dynamic, String>(json['errors']);
     success = json['success'];
-    statusCode = tryCast(json['status_code'], 404);
+    statusCode = tryCast(json['status_code'], 400);
     statusMessage = tryCast(json['status_message'], "The resource you requested could not be found.");
   }
 
