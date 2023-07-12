@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:mvvm_movie_app/data/repository/movie/movie_remote_source_impl.dart';
-import 'package:mvvm_movie_app/data/repository/movie/movie_repository_domain_impl.dart';
+import 'package:mvvm_movie_app/data/repository/movie/movie_repository_impl.dart';
 import 'package:mvvm_movie_app/domain/repository/movie_repository.dart';
 import 'package:mvvm_movie_app/domain/usecase/movie_usecase.dart';
 import 'package:mvvm_movie_app/presentation/home/now_playing/now_playing_cubit.dart';
@@ -21,7 +21,7 @@ void initDependencies() {
 
   // repository impl domain
   locator.registerFactory<MovieRepository>(
-    () => MovieRepositoryDomainImpl(
+    () => MovieRepositoryImpl(
       locator(),
     ),
   );

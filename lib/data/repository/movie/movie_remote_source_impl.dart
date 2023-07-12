@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:mvvm_movie_app/core/environment_config.dart';
 import 'package:mvvm_movie_app/core/remote_exception.dart';
@@ -39,7 +40,7 @@ class MovieRemoteSourceImpl implements MovieRemoteSource {
   Future<NowPlayingModel> getNowPlayingMovies(int page) async {
     final response = await client.get(
       Uri.parse("${apiBaseURL}movie/now_playing?language=en-US&page=$page"),
-      headers: {"Authorization": apiBearerToken},
+      headers: {"Authorization": apiBearerToken.toString()},
     );
 
     final body = jsonDecode(response.body);

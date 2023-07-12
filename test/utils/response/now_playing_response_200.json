@@ -1,0 +1,31 @@
+{
+  "dates": {
+    "maximum": "2023-07-09",
+    "minimum": "2023-05-22"
+  },
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/oqP1qEZccq5AD9TVTIaO6IGUj7o.jpg",
+      "genre_ids": [
+        14,
+        28,
+        12
+      ],
+      "id": 455476,
+      "original_language": "en",
+      "original_title": "Knights of the Zodiac",
+      "overview": "When a headstrong street orphan, Seiya, in search of his abducted sister unwittingly taps into hidden powers, he discovers he might be the only person alive who can protect a reincarnated goddess, sent to watch over humanity. Can he let his past go and embrace his destiny to become a Knight of the Zodiac?",
+      "popularity": 3105.826,
+      "poster_path": "/qW4crfED8mpNDadSmMdi7ZDzhXF.jpg",
+      "release_date": "2023-04-27",
+      "title": "Knights of the Zodiac",
+      "video": false,
+      "vote_average": 6.5,
+      "vote_count": 384
+    }
+  ],
+  "total_pages": 85,
+  "total_results": 1697
+}

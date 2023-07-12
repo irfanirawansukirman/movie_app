@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:mvvm_movie_app/core/common.dart';
 import 'package:mvvm_movie_app/domain/entity/movie/error_entity.dart';
 
-class ErrorModel {
+class ErrorModel extends Equatable {
   ErrorModel({
     required this.errors,
     required this.success,
@@ -21,7 +22,8 @@ class ErrorModel {
     errors = List.castFrom<dynamic, String>(json['errors']);
     success = json['success'];
     statusCode = tryCast(json['status_code'], 400);
-    statusMessage = tryCast(json['status_message'], "The resource you requested could not be found.");
+    statusMessage = tryCast(json['status_message'],
+        "The resource you requested could not be found.");
   }
 
   ErrorEntity toEntity() => ErrorEntity(
@@ -37,4 +39,12 @@ class ErrorModel {
     _data['status_message'] = statusMessage;
     return _data;
   }
+
+  @override
+  List<Object?> get props => [
+        errors,
+        success,
+        statusCode,
+        statusMessage,
+      ];
 }

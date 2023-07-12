@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:mvvm_movie_app/core/common.dart';
 import 'package:mvvm_movie_app/domain/entity/movie/movie_entity.dart';
 
-class NowPlayingModel {
+class NowPlayingModel extends Equatable {
   NowPlayingModel({
     required this.dates,
     required this.page,
@@ -35,9 +36,18 @@ class NowPlayingModel {
     _data['total_results'] = totalResults;
     return _data;
   }
+
+  @override
+  List<Object?> get props => [
+        dates,
+        page,
+        results,
+        totalPages,
+        totalResults,
+      ];
 }
 
-class NowPlayingDatesModel {
+class NowPlayingDatesModel extends Equatable {
   NowPlayingDatesModel({
     required this.maximum,
     required this.minimum,
@@ -57,9 +67,15 @@ class NowPlayingDatesModel {
     _data['minimum'] = minimum;
     return _data;
   }
+
+  @override
+  List<Object?> get props => [
+        maximum,
+        minimum,
+      ];
 }
 
-class NowPlayingItemModel {
+class NowPlayingItemModel extends Equatable {
   NowPlayingItemModel({
     required this.adult,
     required this.backdropPath,
@@ -135,4 +151,22 @@ class NowPlayingItemModel {
     _data['vote_count'] = voteCount;
     return _data;
   }
+
+  @override
+  List<Object?> get props => [
+        adult,
+        backdropPath,
+        genreIds,
+        id,
+        originalLanguage,
+        originalTitle,
+        overview,
+        popularity,
+        posterPath,
+        releaseDate,
+        title,
+        video,
+        voteAverage,
+        voteCount,
+      ];
 }
