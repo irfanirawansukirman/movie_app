@@ -9,6 +9,7 @@ import 'injector.dart' as inject;
 
 void main() {
   setEnvironment(Environment.development);
+
   WidgetsFlutterBinding.ensureInitialized();
 
   inject.initDependencies();
@@ -30,17 +31,17 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutePath.home,
       onGenerateRoute: (route) {
         switch (route.name) {
-          case AppRoutePath.movieDetail:
-            {
-              final params = route.arguments as Map;
-              return MaterialPageRoute(
-                builder: (_) => MovieDetailScreen(
-                  id: int.parse(
-                    params["id"].toString(),
-                  ),
-                ),
-              );
-            }
+          // case AppRoutePath.movieDetail:
+          //   {
+          //     final params = route.arguments as Map;
+          //     return MaterialPageRoute(
+          //       builder: (_) => MovieDetailScreen(
+          //         id: int.parse(
+          //           params["id"].toString(),
+          //         ),
+          //       ),
+          //     );
+          //   }
           case AppRoutePath.about:
             {
               return MaterialPageRoute(

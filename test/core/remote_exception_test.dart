@@ -10,7 +10,7 @@ void main() {
 
       // act
       final errorModel = ErrorModel(
-        errors: [],
+        errors: const [],
         success: true,
         statusCode: 200,
         statusMessage: "success",
@@ -21,9 +21,11 @@ void main() {
         RemoteException(errorModel),
         allOf(
           isA<RemoteException>(),
-          predicate<RemoteException>((remoteException) {
-            return remoteException.errorModel.statusCode == 200;
-          }),
+          predicate<RemoteException>(
+            (remoteException) {
+              return remoteException.errorModel.statusCode == 200;
+            },
+          ),
         ),
       );
     },
@@ -31,12 +33,12 @@ void main() {
 
   test(
     "remote exception test failed",
-        () {
+    () {
       // arrange
 
       // act
       final errorModel = ErrorModel(
-        errors: [],
+        errors: const [],
         success: false,
         statusCode: 404,
         statusMessage: "failed",
@@ -47,9 +49,11 @@ void main() {
         RemoteException(errorModel),
         allOf(
           isA<RemoteException>(),
-          predicate<RemoteException>((remoteException) {
-            return remoteException.errorModel.statusCode == 404;
-          }),
+          predicate<RemoteException>(
+            (remoteException) {
+              return remoteException.errorModel.statusCode == 404;
+            },
+          ),
         ),
       );
     },

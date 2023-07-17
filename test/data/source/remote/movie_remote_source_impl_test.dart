@@ -5,11 +5,12 @@ import "package:http/http.dart" as http;
 import "package:mockito/mockito.dart";
 import "package:mvvm_movie_app/core/environment_config.dart";
 import "package:mvvm_movie_app/core/remote_exception.dart";
+import "package:mvvm_movie_app/data/model/error_model.dart";
 import "package:mvvm_movie_app/data/model/movie/now_playing_model.dart";
-import "package:mvvm_movie_app/data/repository/movie/movie_remote_source_impl.dart";
+import 'package:mvvm_movie_app/data/source/remote/movie_remote_source_impl.dart';
 
-import "../../../utils/json_reader.dart";
-import "../../../utils/mock/mock_helper.mocks.dart";
+import '../../../utils/json_reader.dart';
+import '../../../utils/mock/mock_helper.mocks.dart';
 
 void main() {
   late MockHttpClient mockHttpClient;
@@ -21,7 +22,7 @@ void main() {
   });
 
   group(
-    "GET_MOVIE_TEST",
+    "GET_NOW_PLAYING_MOVIES_TEST",
     () {
       final nowPlayingMovie = NowPlayingModel.fromJson(
         json.decode(
@@ -40,7 +41,7 @@ void main() {
       );
 
       test(
-        "get now playing movie is success with status code 200 and data is not empty",
+        "getNowPlayingMovies is success with status code 200 and data is not empty",
         () async {
           // arrange
           when(
@@ -71,7 +72,7 @@ void main() {
       );
 
       test(
-        "get now playing movie is success with status code 200 but data is empty",
+        "getNowPlayingMovies is success with status code 200 but data is empty",
         () async {
           // arrange
           when(
@@ -93,7 +94,8 @@ void main() {
 
           // assert
           expect(result, isA<NowPlayingModel>());
-          expect(result.totalResults, equals(nowPlayingMovieEmpty.totalResults));
+          expect(
+              result.totalResults, equals(nowPlayingMovieEmpty.totalResults));
           expect(result.totalPages, equals(nowPlayingMovieEmpty.totalPages));
           expect(result.results, equals(nowPlayingMovieEmpty.results));
           expect(result.page, equals(nowPlayingMovieEmpty.page));
@@ -102,7 +104,7 @@ void main() {
       );
 
       test(
-        "get now playing movie is failed with status code 422 and throw RemoteException",
+        "getNowPlayingMovies is failed and throw RemoteException",
         () async {
           // arrange
           when(
@@ -110,12 +112,15 @@ void main() {
               Uri.parse("${apiBaseURL}movie/now_playing?language=en-US&page=1"),
               headers: {"Authorization": apiBearerToken.toString()},
             ),
-          ).thenAnswer(
-            (_) async => http.Response(
-              readJson(
-                "utils/response/error_data_not_found_422.json",
+          ).thenThrow(
+            RemoteException(
+              ErrorModel.fromJson(
+                json.decode(
+                  readJson(
+                    "utils/response/error_page_exceed_500.json",
+                  ),
+                ),
               ),
-              422,
             ),
           );
 

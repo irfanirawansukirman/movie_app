@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:mvvm_movie_app/core/common.dart';
-import 'package:mvvm_movie_app/domain/entity/movie/error_entity.dart';
 
 class ErrorModel extends Equatable {
   ErrorModel({
@@ -11,11 +10,11 @@ class ErrorModel extends Equatable {
   });
 
   // movie list model
-  late final List<String> errors;
+  late final List<String>? errors;
   late final bool success;
 
   // movie detail model
-  late final int statusCode;
+  late final int? statusCode;
   late final String statusMessage;
 
   ErrorModel.fromJson(Map<String, dynamic> json) {
@@ -25,11 +24,6 @@ class ErrorModel extends Equatable {
     statusMessage = tryCast(json['status_message'],
         "The resource you requested could not be found.");
   }
-
-  ErrorEntity toEntity() => ErrorEntity(
-        code: 404,
-        message: tryCast(errors[0], statusMessage),
-      );
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mvvm_movie_app/core/app_route_path.dart';
 import 'package:mvvm_movie_app/core/widget/progress_view_widget.dart';
 import 'package:mvvm_movie_app/domain/entity/movie/genre_entity.dart';
@@ -29,11 +30,19 @@ class MovieItemWidget extends StatelessWidget {
     log("MOVIE_ITEM $id GENRES ${_genresMapToUI(genreIds, genreEntities)}");
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          AppRoutePath.movieDetail,
-          arguments: {"id": id},
-        );
+        // Navigator.pushNamed(
+        //   context,
+        //   AppRoutePath.movieDetail,
+        //   arguments: {"id": id},
+        // );
+        Fluttertoast.showToast(
+            msg: "Coming soon, Insyaallah...",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.grey.shade700,
+            textColor: Colors.white,
+            fontSize: 16.0);
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),

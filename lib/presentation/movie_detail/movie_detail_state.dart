@@ -12,7 +12,7 @@ class MovieDetailSuccess extends MovieDetailState {
 }
 
 class MovieDetailFailed extends MovieDetailState {
-  final ErrorEntity error;
+  final Failure error;
   
   MovieDetailFailed(this.error);
 }

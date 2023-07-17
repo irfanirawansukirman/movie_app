@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
+import 'package:http/http.dart' as http;
 import 'package:mvvm_movie_app/core/environment_config.dart';
 import 'package:mvvm_movie_app/core/remote_exception.dart';
 import 'package:mvvm_movie_app/data/model/error_model.dart';
@@ -12,7 +12,6 @@ import 'package:mvvm_movie_app/data/model/movie/popular_movie_model.dart';
 import 'package:mvvm_movie_app/data/model/movie/top_rated_model.dart';
 import 'package:mvvm_movie_app/data/model/movie/up_coming_model.dart';
 import 'package:mvvm_movie_app/data/source/remote/movie_remote_source.dart';
-import 'package:http/http.dart' as http;
 
 class MovieRemoteSourceImpl implements MovieRemoteSource {
   final http.Client client;

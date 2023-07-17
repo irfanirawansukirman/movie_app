@@ -14,7 +14,7 @@ class UpComingSuccess extends UpComingState {
 }
 
 class UpComingFailed extends UpComingState {
-  final ErrorEntity error;
+  final Failure error;
 
   UpComingFailed(this.error);
 }
