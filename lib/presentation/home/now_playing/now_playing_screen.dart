@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvvm_movie_app/core/widget/error_view_widget.dart';
 import 'package:mvvm_movie_app/core/widget/progress_view_widget.dart';
-import 'package:mvvm_movie_app/injector.dart' as inject;
 import 'package:mvvm_movie_app/presentation/home/now_playing/now_playing_cubit.dart';
 import 'package:mvvm_movie_app/presentation/home/widget/movie_item_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -15,7 +14,7 @@ class NowPlayingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => inject.locator<NowPlayingCubit>()..getNowPlayingMovies(),
+      create: (_) => context.read<NowPlayingCubit>()..getNowPlayingMovies(),
       child: BlocBuilder<NowPlayingCubit, NowPlayingState>(
         builder: (context, state) {
           log("NOW_PLAYING_MOVIE_STATE $state");
@@ -23,19 +22,20 @@ class NowPlayingScreen extends StatelessWidget {
             log("NOW_PLAYING_MOVIE_SUCCESS ${state.data}");
             return SmartRefresher(
               onRefresh: () =>
-                  context.read<NowPlayingCubit>()..getNowPlayingMovies(),
+                  context.read<NowPlayingCubit>().getNowPlayingMovies(),
               onLoading: () =>
-                  context.read<NowPlayingCubit>()..getNextNowPlayingMovies(),
+                  context.read<NowPlayingCubit>().getNextNowPlayingMovies(),
               enablePullDown: true,
               enablePullUp: true,
               controller: NowPlayingCubit.refreshController,
               child: GridView.builder(
                 padding: const EdgeInsets.all(8.0),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 2 / 3,
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 8.0,
-                    crossAxisSpacing: 8.0),
+                  childAspectRatio: 2 / 3,
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 8.0,
+                  crossAxisSpacing: 8.0,
+                ),
                 itemCount: state.data.length,
                 itemBuilder: (BuildContext ctx, index) {
                   return MovieItemWidget(

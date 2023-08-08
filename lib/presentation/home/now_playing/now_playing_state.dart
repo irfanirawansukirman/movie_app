@@ -1,7 +1,11 @@
 part of 'now_playing_cubit.dart';
 
 @immutable
-abstract class NowPlayingState {}
+abstract class NowPlayingState extends Equatable {
+
+  @override
+  List<Object?> get props => [];
+}
 
 class NowPlayingInitial extends NowPlayingState {}
 
@@ -17,4 +21,7 @@ class NowPlayingFailed extends NowPlayingState {
   final Failure error;
 
   NowPlayingFailed(this.error);
+
+  @override
+  List<Object?> get props => [error];
 }

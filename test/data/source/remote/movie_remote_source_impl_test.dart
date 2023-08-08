@@ -22,7 +22,7 @@ void main() {
   });
 
   group(
-    "GET_NOW_PLAYING_MOVIES_TEST",
+    "GET_NOW_PLAYING_MOVIES",
     () {
       final nowPlayingMovie = NowPlayingModel.fromJson(
         json.decode(

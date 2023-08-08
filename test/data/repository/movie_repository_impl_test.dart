@@ -15,11 +15,6 @@ void main() {
   late MockMovieRemoteSource mockMovieRemoteSource;
   late MovieRepositoryImpl movieRepositoryImpl;
 
-  setUp(() {
-    mockMovieRemoteSource = MockMovieRemoteSource();
-    movieRepositoryImpl = MovieRepositoryImpl(mockMovieRemoteSource);
-  });
-
   final nowPlayingMovieModel = NowPlayingModel.fromJson(
     json.decode(
       readJson(
@@ -28,7 +23,12 @@ void main() {
     ),
   );
 
-  group("description", () {
+  setUp(() {
+    mockMovieRemoteSource = MockMovieRemoteSource();
+    movieRepositoryImpl = MovieRepositoryImpl(mockMovieRemoteSource);
+  });
+
+  group("GET_NOW_PLAYING_MOVIES", () {
     test(
         'getNowPlayingMovies returns Right with MovieEntity list on successful response',
         () async {

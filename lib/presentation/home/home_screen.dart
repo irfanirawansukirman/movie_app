@@ -14,10 +14,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   static final List<Widget> _pages = [
-    const NowPlayingScreen(),
-    const PopularScreen(),
-    const TopRatedScreen(),
-    const UpComingScreen()
+     const NowPlayingScreen(),
+     const PopularScreen(),
+     const TopRatedScreen(),
+     const UpComingScreen()
   ];
 
   int _selectedIndex = 0;
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite,
             ),
           ),
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.pushNamed(context, AppRoutePath.about);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.info,
             ),
           )
